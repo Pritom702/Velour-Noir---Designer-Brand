@@ -1,11 +1,28 @@
-<div align="center">
+# Velour Noir - Luxury E-Commerce Experience
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+A high-end, elegant e-commerce storefront designed for luxury boutiques and fashion houses. Built with a focus on premium aesthetics, this application features a bespoke dark-mode interface, smooth fluid transitions, and a modern modern tech stack.
 
-  <h1>Built with AI Studio</h2>
+## 🌟 Key Features
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+- **Premium UI/UX**: Minimalist dark-themed aesthetic (using custom `obsidian`, `bone`, and `gold` palettes) accented by fluid animations powered by Framer Motion.
+- **Internationalization (i18n)**: Out-of-the-box support for seamless English (EN) and French (FR) localization, along with USD / EUR currency toggling.
+- **Modern Authentication**: Integrated Google Sign-In via Firebase Auth, featuring Role-Based Access Control (RBAC) separating administrative functionality from standard customers.
+- **Flexible Checkout**: A multi-step checkout workflow supporting Credit/Debit Cards, PayPal, and Cryptocurrency.
+- **Admin Dashboard**: Dedicated secure route for inventory, order tracking, and administrative operations.
+- **Responsive Navigation**: Sophisticated full-screen animated overlay menu with mobile-first usability considerations.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## 🛠️ Tech Stack
 
-</div>
+- **Frontend Framework**: React 18 & Vite
+- **Styling**: Tailwind CSS & Shadcn UI
+- **Animations**: Framer Motion
+- **Routing**: React Router DOM
+- **Backend/Auth**: Firebase (Authentication & Cloud Firestore)
+- **Icons**: Lucide React
+
+## 🚀 Getting Started
+
+1. Clone the repository
+2. Run `npm install` to install dependencies
+3. Set up your `.env` file according to `.env.example` with your Firebase configurations.
+4. Run `npm run dev` to start the development server.
