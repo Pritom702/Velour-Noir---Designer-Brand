@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { X, Search } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
-import { Button } from "@/components/ui/app-button";
+import { Button } from "@/components/ui/app-button"; // Button component
 
 export function Overlays() {
   const { cartOpen, setCartOpen, searchOpen, setSearchOpen, menuOpen, setMenuOpen, cartItems, subtotal, isFr, currency, lang, setLang, setCurrency, updateQuantity } = useApp();
