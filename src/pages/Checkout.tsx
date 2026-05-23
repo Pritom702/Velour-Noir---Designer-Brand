@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useApp } from "../context/AppContext";
+import { Image } from "../components/Image";
 
 export default function Checkout() {
   const { isFr, cartItems, subtotal, currency, clearCart, user } = useApp();
@@ -143,7 +144,7 @@ export default function Checkout() {
               {cartItems.map(item => (
                 <div key={item.id} className="flex gap-4">
                   <div className="w-20 aspect-[3/4] bg-noir overflow-hidden shrink-0">
-                    <img src={item.image} className="w-full h-full object-cover grayscale opacity-80" alt={item.name} />
+                    <Image src={item.image} fallbackText={item.name} className="w-full h-full object-cover grayscale opacity-80" alt={item.name} />
                   </div>
                   <div className="flex-1 flex flex-col justify-center">
                     <div className="flex justify-between items-start mb-2">

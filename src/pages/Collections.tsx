@@ -1,14 +1,21 @@
 import React, { useMemo } from "react";
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useApp } from "../context/AppContext";
+import { Image } from "../components/Image";
 
 export default function Collections() {
   const { isFr, currency, addToCart, products } = useApp();
+  const [searchParams] = useSearchParams();
+  const selectedCategory = searchParams.get("category");
 
   const categories = useMemo(() => {
-    return Array.from(new Set(products.map(p => p.cat)));
-  }, []);
+    let allCats = Array.from(new Set(products.map(p => p.cat)));
+    if (selectedCategory) {
+      allCats = allCats.filter(c => c === selectedCategory);
+    }
+    return allCats;
+  }, [products, selectedCategory]);
 
   return (
     <main className="bg-noir text-bone min-h-screen pt-32 pb-24">
@@ -42,7 +49,7 @@ export default function Collections() {
                     className="flex flex-col group block bg-obsidian border border-white/5 glow-card"
                   >
                     <Link to={`/product/${prod.id}`} className="block aspect-[3/4] w-full overflow-hidden relative">
-                      <img src={prod.image} alt={prod.name} className="absolute inset-0 w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                      <Image src={prod.image} fallbackText={prod.name} alt={prod.name} className="absolute inset-0 w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
                     </Link>
                     <div className="p-6 flex flex-col flex-1">
                       <Link to={`/product/${prod.id}`}>

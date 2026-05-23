@@ -3,6 +3,7 @@ import { useApp } from "../context/AppContext";
 import { Navigate } from "react-router-dom";
 import { Product } from "../data/products";
 import { Plus, Edit2, Check, X } from "lucide-react";
+import { Image } from "../components/Image";
 
 export default function AdminDashboard() {
   const { user, products, setProducts, isFr, currency } = useApp();
@@ -29,6 +30,42 @@ export default function AdminDashboard() {
       setProducts(prev => prev.map(p => p.id === editingId ? { ...p, ...editForm } as Product : p));
     }
     setEditingId(null);
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>, setForm: React.Dispatch<React.SetStateAction<any>>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = document.createElement('img');
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const max_size = 800;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > max_size) {
+              height *= max_size / width;
+              width = max_size;
+            }
+          } else {
+            if (height > max_size) {
+              width *= max_size / height;
+              height = max_size;
+            }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx?.drawImage(img, 0, 0, width, height);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+          setForm((prev: any) => ({ ...prev, image: dataUrl }));
+        };
+        img.src = event.target?.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleAdd = () => {
@@ -68,7 +105,7 @@ export default function AdminDashboard() {
                   <option value="Ready-to-Wear">Ready-to-Wear</option>
                   <option value="Fine Jewellery">Fine Jewellery</option>
                   <option value="Watches">Watches</option>
-                  <option value="Fragrance">Fragrance</option>
+                  <option value="Perfumes">Perfumes</option>
                   <option value="Beauty">Beauty</option>
                   <option value="Accessories">Accessories</option>
                   <option value="Bags">Bags</option>
@@ -79,8 +116,14 @@ export default function AdminDashboard() {
                 <input type="number" value={addForm.price} onChange={e => setAddForm({...addForm, price: Number(e.target.value)})} className="w-full bg-noir border border-white/10 p-3 text-sm text-bone outline-none focus:border-gold" />
               </div>
               <div>
-                <label className="block text-[10px] uppercase font-accent tracking-widest text-ash mb-2">Image URL</label>
-                <input type="text" value={addForm.image} onChange={e => setAddForm({...addForm, image: e.target.value})} className="w-full bg-noir border border-white/10 p-3 text-sm text-bone outline-none focus:border-gold" />
+                <label className="block text-[10px] uppercase font-accent tracking-widest text-ash mb-2">Image URL or Upload</label>
+                <div className="flex gap-2">
+                  <input type="text" value={addForm.image} onChange={e => setAddForm({...addForm, image: e.target.value})} className="flex-1 bg-noir border border-white/10 p-3 text-sm text-bone outline-none focus:border-gold" placeholder="URL" />
+                  <label className="bg-noir border border-white/10 p-3 text-sm text-bone cursor-pointer hover:border-gold flex items-center justify-center shrink-0">
+                    <span>Upload</span>
+                    <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, setAddForm)} className="hidden" />
+                  </label>
+                </div>
               </div>
               <div className="md:col-span-2">
                 <label className="block text-[10px] uppercase font-accent tracking-widest text-ash mb-2">Description</label>
@@ -102,7 +145,13 @@ export default function AdminDashboard() {
                   <input type="text" value={editForm.cat} onChange={e => setEditForm({...editForm, cat: e.target.value})} className="w-full bg-noir border border-white/10 p-2 text-sm text-bone outline-none focus:border-gold" placeholder="Category" />
                   <input type="number" value={editForm.price} onChange={e => setEditForm({...editForm, price: Number(e.target.value)})} className="w-full bg-noir border border-white/10 p-2 text-sm text-bone outline-none focus:border-gold" placeholder="Price" />
                   <textarea value={editForm.description} onChange={e => setEditForm({...editForm, description: e.target.value})} className="w-full bg-noir border border-white/10 p-2 text-sm text-bone outline-none focus:border-gold h-24" placeholder="Description" />
-                  <input type="text" value={editForm.image} onChange={e => setEditForm({...editForm, image: e.target.value})} className="w-full bg-noir border border-white/10 p-2 text-sm text-bone outline-none focus:border-gold" placeholder="Image URL" />
+                  <div className="flex gap-2">
+                    <input type="text" value={editForm.image} onChange={e => setEditForm({...editForm, image: e.target.value})} className="flex-1 bg-noir border border-white/10 p-2 text-sm text-bone outline-none focus:border-gold" placeholder="Image URL" />
+                    <label className="bg-noir border border-white/10 px-3 py-2 text-sm text-bone cursor-pointer hover:border-gold flex items-center justify-center shrink-0">
+                      <span>Upload</span>
+                      <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, setEditForm)} className="hidden" />
+                    </label>
+                  </div>
                   
                   <div className="flex space-x-4 pt-4">
                     <button onClick={saveEdit} className="text-green-500 hover:text-green-400 p-2 border border-green-500/30 rounded flex-1 flex justify-center"><Check className="w-4 h-4" /></button>
@@ -112,7 +161,7 @@ export default function AdminDashboard() {
               ) : (
                 <>
                   <div className="aspect-[4/3] bg-noir mb-6 overflow-hidden relative border border-white/5">
-                     <img src={prod.image} alt={prod.name} className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                     <Image src={prod.image} fallbackText={prod.name} alt={prod.name} className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
                   </div>
                   <div className="flex-1">
                     <div className="flex justify-between items-start mb-2">

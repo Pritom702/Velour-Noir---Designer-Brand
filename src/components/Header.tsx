@@ -20,21 +20,23 @@ export function Header() {
           <button onClick={() => setMenuOpen(true)} className="text-bone hover:text-gold transition-colors">
             <Menu className="w-6 h-6" />
           </button>
-          <div className="hidden md:flex space-x-4 font-accent text-xs tracking-widest text-ash">
-            <button className={`${lang === 'EN' ? 'text-bone' : ''} hover:text-gold transition-colors`} onClick={() => setLang('EN')}>EN</button>
-            <button className={`${lang === 'FR' ? 'text-bone' : ''} hover:text-gold transition-colors`} onClick={() => setLang('FR')}>FR</button>
+          <div className="hidden lg:flex items-center space-x-4 font-accent text-[10px] tracking-widest text-ash">
+            <div className="flex space-x-4 pr-4 border-r border-white/20">
+              <button className={`${lang === 'EN' ? 'text-bone' : ''} hover:text-gold transition-colors`} onClick={() => setLang('EN')}>EN</button>
+              <button className={`${lang === 'FR' ? 'text-bone' : ''} hover:text-gold transition-colors`} onClick={() => setLang('FR')}>FR</button>
+            </div>
+            <div className="flex space-x-4">
+              <button className={`${currency === 'EUR' ? 'text-bone' : ''} hover:text-gold transition-colors`} onClick={() => setCurrency('EUR')}>EUR</button>
+              <button className={`${currency === 'USD' ? 'text-bone' : ''} hover:text-gold transition-colors`} onClick={() => setCurrency('USD')}>USD</button>
+            </div>
           </div>
         </div>
         
-        <Link to="/" className="font-accent text-xl md:text-2xl tracking-[0.3em] uppercase absolute left-1/2 -translate-x-1/2 text-bone hover:text-gold transition-colors">
+        <Link to="/" className="font-accent text-xl md:text-2xl lg:text-2xl tracking-[0.3em] uppercase absolute left-1/2 -translate-x-1/2 text-bone hover:text-gold transition-colors">
           Velour Noir
         </Link>
         
         <div className="flex items-center space-x-6">
-          <div className="hidden md:flex space-x-4 font-accent text-[10px] tracking-widest text-ash mr-2 border-r border-white/20 pr-6">
-            <button className={`${currency === 'EUR' ? 'text-bone' : ''} hover:text-gold transition-colors`} onClick={() => setCurrency('EUR')}>EUR</button>
-            <button className={`${currency === 'USD' ? 'text-bone' : ''} hover:text-gold transition-colors`} onClick={() => setCurrency('USD')}>USD</button>
-          </div>
           <Link to={user?.role === 'admin' ? "/admin" : "/login"} className="text-bone hover:text-gold transition-colors flex items-center space-x-2">
             <UserIcon className="w-5 h-5" />
             <span className="hidden md:inline font-accent text-[10px] tracking-widest uppercase">{user ? user.username : 'LOGIN'}</span>

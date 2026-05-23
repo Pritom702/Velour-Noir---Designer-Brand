@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { useApp } from "../context/AppContext";
 import { ArrowLeft } from "lucide-react";
+import { Image } from "../components/Image";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -37,7 +38,7 @@ export default function ProductPage() {
           {/* Image */}
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} className="flex-1">
             <div className="aspect-[3/4] bg-obsidian relative overflow-hidden border border-white/5">
-              <img src={product.image} alt={product.name} className="w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 hover:opacity-100 hover:scale-105 transition-all duration-1000 ease-out" />
+              <Image src={product.image} fallbackText={product.name} alt={product.name} className="w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 hover:opacity-100 hover:scale-105 transition-all duration-1000 ease-out" />
             </div>
           </motion.div>
 
@@ -107,7 +108,7 @@ export default function ProductPage() {
                 className="group border border-white/5 bg-obsidian p-4 glow-card flex flex-col"
               >
                 <Link to={`/product/${prod.id}`} className="aspect-square bg-noir mb-6 overflow-hidden">
-                  <img src={prod.image} alt={prod.name} className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                  <Image src={prod.image} fallbackText={prod.name} alt={prod.name} className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
                 </Link>
                 <div className="px-2 pb-2 text-center">
                   <span className="font-accent tracking-[0.2em] text-[9px] text-ash uppercase mb-2 block">{prod.cat}</span>

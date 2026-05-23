@@ -81,14 +81,6 @@ export const products: Product[] = [
     description: "Fluid and graceful, this exquisite gown is defined by its immaculate floor-sweeping drape and precisely tailored bodice."
   },
   {
-    id: 10,
-    name: "Artisanal Woody Fragrance",
-    cat: "Fragrance",
-    price: 230,
-    image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=2000",
-    description: "A captivating unisex signature scent. Smoky, botanical, and leathery notes create a comforting yet distinctive atmosphere."
-  },
-  {
     id: 11,
     name: "Hydrating Lip Treatment",
     cat: "Beauty",
@@ -119,5 +111,85 @@ export const products: Product[] = [
     price: 550,
     image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&q=80&w=2000",
     description: "A masterful bi-fold wallet, tightly woven using signature interlaced leather techniques for durability and timeless style."
+  },
+  {
+    id: 15,
+    name: "Dior Sauvage",
+    cat: "Perfumes",
+    price: 155,
+    image: "https://thumbs.dreamstime.com/b/bottle-toilet-water-sauvage-white-background-christian-dior-st-petersburg-russia-march-product-209983532.jpg",
+    description: "A radically fresh composition. Notes of Calabrian bergamot and Pepper; Sichuan Pepper, Lavender, Pink Pepper, Vetiver, Patchouli; Ambroxan, Cedar."
+  },
+  {
+    id: 16,
+    name: "YSL Y Eau de Parfum",
+    cat: "Perfumes",
+    price: 148,
+    image: "https://wallpapers.com/images/hd/ysl-pictures-jjuvz29vwkl8f1n1.jpg",
+    description: "A deeply fresh and masculine scent. Notes of Apple, Ginger, Bergamot; Sage, Juniper Berries, Geranium; Amberwood, Tonka Bean, Cedar, Vetiver."
+  },
+  {
+    id: 17,
+    name: "Davidoff Cool Water",
+    cat: "Perfumes",
+    price: 60,
+    image: "https://www.vhv.rs/dpng/d/456-4566932_cool-water-by-davidoff-for-men-cosmetics-store.png",
+    description: "Inspired by the freshness of the ocean. Notes of Sea water, Lavender, Mint, Green Notes, Rosemary; Sandalwood, Jasmine, Neroli; Musk, Vetiver, Cedar, Tobacco."
+  },
+  {
+    id: 18,
+    name: "Versace Eros",
+    cat: "Perfumes",
+    price: 130,
+    image: "https://c8.alamy.com/comp/WHHDKC/a-bottle-of-versace-eros-eau-de-toilette-aftershave-for-men-on-a-white-background-WHHDKC.jpg",
+    description: "Love, passion, beauty, and desire. Notes of Mint, Green Apple, Lemon; Tonka Bean, Ambroxan, Geranium; Madagascar Vanilla, Virginian Cedar, Vetiver, Oakmoss."
+  },
+  {
+    id: 19,
+    name: "Bleu de Chanel",
+    cat: "Perfumes",
+    price: 165,
+    image: "https://thumbs.dreamstime.com/b/bottle-bleu-de-chanel-perfume-bangkok-thailand-dec-bottle-bleu-de-chanel-perfume-white-background-264301254.jpg",
+    description: "A profoundly sensual trail. Notes of Grapefruit, Lemon, Mint, Pink Pepper; Ginger, Nutmeg, Jasmine; Incense, Vetiver, Cedar, Sandalwood."
+  },
+  {
+    id: 20,
+    name: "Acqua Di Gio",
+    cat: "Perfumes",
+    price: 110,
+    image: "https://assets.armani.com/image/upload/f_auto,q_auto:good,w_1125,h_1428,c_fill/v1729106666/LE316300_NLP_100ML_F_FW2024.jpg",
+    description: "Capturing the Mediterranean sea. Notes of Lime, Lemon, Bergamot, Jasmine, Orange, Mandarin; Sea Notes, Calone, Peach, Freesia; Cedar, White Musk, Patchouli."
+  },
+  {
+    id: 21,
+    name: "Creed Aventus",
+    cat: "Perfumes",
+    price: 495,
+    image: "https://manzara-eg.com/cdn/shop/files/CREED.jpg?v=1752092853",
+    description: "Celebrating strength, power, and success. Notes of Pineapple, Bergamot, Black Currant, Apple; Birch, Patchouli, Moroccan Jasmine, Rose; Musk, oak moss, Ambergris."
+  },
+  {
+    id: 22,
+    name: "Tom Ford Oud Wood",
+    cat: "Perfumes",
+    price: 295,
+    image: "https://sdcdn.io/tf/tf_sku_TAJK01_2000x2000_0.png",
+    description: "A pioneering exotic composition. Notes of Agarwood (Oud), Brazilian Rosewood, Cardamom, Sandalwood, Vanilla, Sichuan Pepper, Vetiver, Tonka Bean."
+  },
+  {
+    id: 23,
+    name: "Jo Malone Wood Sage & Sea Salt",
+    cat: "Perfumes",
+    price: 165,
+    image: "https://www.jomalone.com.au/media/export/cms/products/1000x1000/jo_sku_L41501_1000x1000_0.png",
+    description: "Escape the everyday along the windswept shore. Notes of Ambrette (Musk Mallow), Sea Salt, Sage, Seaweed, and Grapefruit."
+  },
+  {
+    id: 24,
+    name: "Paco Rabanne 1 Million",
+    cat: "Perfumes",
+    price: 120,
+    image: "https://media.cosmeticexpress.com/prod-public/media/09/72/d8/1755695928/3349668566372.jpg?ts=1755695928",
+    description: "The scent of success. Notes of Blood Mandarin, Grapefruit, Mint; Cinnamon, Spicy Notes, Rose; Amber, Leather, Woody Notes, Indian Patchouli."
   }
 ];

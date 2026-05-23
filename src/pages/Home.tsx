@@ -11,6 +11,8 @@ const testimonials = [
   { text: "Silence is expensive. Worth every centime.", author: "Elena V., Milan" }
 ];
 
+import { Image } from "../components/Image";
+
 export default function Home() {
   const { isFr, currency, addToCart, products } = useApp();
   const [testimonyIdx, setTestimonyIdx] = useState(0);
@@ -119,23 +121,25 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                {[
-                 { name: isFr ? "Prêt-à-Porter" : "Ready-to-Wear", code: "C.01", image: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?q=80&w=1500&auto=format&fit=crop" },
-                 { name: isFr ? "Couture" : "Haute Couture", code: "C.02", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1500&auto=format&fit=crop" },
-                 { name: isFr ? "Horlogerie" : "Timepieces", code: "C.03", image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1500&auto=format&fit=crop" },
-                 { name: isFr ? "Joaillerie" : "Fine Jewellery", code: "C.04", image: "https://images.unsplash.com/photo-1599643477874-5c866f4369ed?q=80&w=1500&auto=format&fit=crop" }
+                 { name: isFr ? "Prêt-à-Porter" : "Ready-to-Wear", filterCat: "Ready-to-Wear", code: "C.01", image: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?q=80&w=1500&auto=format&fit=crop" },
+                 { name: isFr ? "Couture" : "Haute Couture", filterCat: "Haute Couture", code: "C.02", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1500&auto=format&fit=crop" },
+                 { name: isFr ? "Horlogerie" : "Timepieces", filterCat: "Timepieces", code: "C.03", image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1500&auto=format&fit=crop" },
+                 { name: isFr ? "Joaillerie" : "Fine Jewellery", filterCat: "Fine Jewellery", code: "C.04", image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=2000" },
+                 { name: isFr ? "Parfums" : "Perfumes", filterCat: "Perfumes", code: "C.05", image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=2000" },
+                 { name: isFr ? "Accessoires" : "Accessories", filterCat: "Accessories", code: "C.06", image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&q=80&w=2000" }
                ].map((cat, i) => (
                  <motion.div 
                    key={i}
                    initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, delay: i * 0.2 }}
                    className="group relative aspect-square md:aspect-[4/3] bg-obsidian overflow-hidden border border-white/5 hover:border-gold/30 transition-colors duration-500 flex flex-col justify-end p-8"
                  >
-                   <img src={cat.image} className="absolute inset-0 w-full h-full object-cover grayscale opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                   <Image src={cat.image} fallbackText={cat.name} className="absolute inset-0 w-full h-full object-cover grayscale opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                    <div className="absolute inset-0 bg-gradient-to-t from-noir via-noir/60 to-transparent z-10" />
                    
                    <div className="relative z-20">
                      <span className="font-accent tracking-[0.2em] text-[10px] text-gold mb-2 block">{cat.code}</span>
                      <h4 className="font-display text-3xl italic text-mist mb-4">{cat.name}</h4>
-                     <Link to="/collections" className="flex items-center space-x-4 text-xs font-accent tracking-widest uppercase text-ash group-hover:text-bone transition-colors w-fit">
+                     <Link to={`/collections?category=${encodeURIComponent(cat.filterCat)}`} className="flex items-center space-x-4 text-xs font-accent tracking-widest uppercase text-ash group-hover:text-bone transition-colors w-fit">
                        <span>{isFr ? "Explorer" : "Explore"}</span>
                        <ArrowRight className="w-4 h-4 transform group-hover:translate-x-2 transition-transform" />
                      </Link>
@@ -163,7 +167,7 @@ export default function Home() {
                      className="min-w-[280px] md:min-w-[360px] snap-center shrink-0 flex flex-col glow-card p-6 bg-noir border border-white/5"
                    >
                      <Link to={`/product/${prod.id}`} className="block aspect-[3/4] w-full bg-obsidian mb-6 overflow-hidden relative group">
-                        <img src={prod.image} className="absolute inset-0 w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" alt={prod.name} />
+                        <Image src={prod.image} fallbackText={prod.name} className="absolute inset-0 w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" alt={prod.name} />
                      </Link>
                      <div className="flex flex-col flex-1">
                         <span className="font-accent tracking-widest text-[10px] text-ash uppercase mb-2">{prod.cat}</span>

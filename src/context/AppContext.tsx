@@ -45,7 +45,21 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [lang, setLang] = useState('EN');
   const [currency, setCurrency] = useState('EUR');
-  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [products, setProducts] = useState<Product[]>(() => {
+    const saved = localStorage.getItem('serein_products');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        return initialProducts;
+      }
+    }
+    return initialProducts;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('serein_products', JSON.stringify(products));
+  }, [products]);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
