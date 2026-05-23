@@ -1,0 +1,6 @@
+{
+  "name": "Velour Noir",
+  "description": "An ultra-luxury Parisian haute couture and ready-to-wear fashion house digital experience.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
