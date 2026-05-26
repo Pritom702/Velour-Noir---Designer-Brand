@@ -1,17 +1,22 @@
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  projectId: "sage-oath-q5xj8",
-  appId: "1:144894804871:web:05c205c3fd12a704188922",
-  apiKey: "AIzaSyDQ-Yafe9HLjiktQgkIv-2fx6mt75XYqlI",
-  authDomain: "sage-oath-q5xj8.firebaseapp.com",
+  apiKey: "AIzaSyCfrXl5LNShGhXKG29GD13nUDXA24kHrYU",
+  authDomain: "velour-noir.firebaseapp.com",
+  projectId: "velour-noir",
+  storageBucket: "velour-noir.firebasestorage.app",
+  messagingSenderId: "548033784285",
+  appId: "1:548033784285:web:9949731913400bf7502e34",
+  measurementId: "G-T8ZVMYSPH9"
 };
 
 export const app = initializeApp(firebaseConfig);
+export const analytics = getAnalytics(app);
 export const auth = getAuth(app);
-export const db = getFirestore(app, "ai-studio-5e425299-f404-4948-908f-9d8985d53769"); // specifying db if needed
+export const db = getFirestore(app);
 
 export const googleProvider = new GoogleAuthProvider();
 

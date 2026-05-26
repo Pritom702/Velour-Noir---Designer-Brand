@@ -8,6 +8,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [password, setPassword] = useState('');
 
   const handleGoogleLogin = async () => {
     if (isLoggingIn) return;
@@ -44,6 +45,15 @@ export default function Login() {
     await logoutFirebase();
     setUser(null);
     navigate('/');
+  };
+
+  const handleAdminLogin = () => {
+    if (password === '12345678') {
+      setUser({ role: 'admin', username: 'Admin' });
+      navigate('/');
+    } else {
+      setError(isFr ? "Mot de passe incorrect." : "Incorrect password.");
+    }
   };
 
   if (user) {
@@ -83,6 +93,22 @@ export default function Login() {
           </svg>
           {isLoggingIn ? (isFr ? "Connexion..." : "Signing in...") : (isFr ? "Se connecter avec Google" : "Sign in with Google")}
         </button>
+
+        <div className="mt-8 pt-8 border-t border-white/10">
+          <h3 className="text-mist text-sm uppercase tracking-widest text-center mb-4">
+            {isFr ? "Accès Administrateur" : "Admin Access"}
+          </h3>
+          <input
+            type="password"
+            placeholder={isFr ? "Mot de passe" : "Password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full bg-transparent border border-white/20 text-white font-body px-4 py-3 mb-4 focus:outline-none focus:border-gold transition-colors"
+          />
+          <button onClick={handleAdminLogin} className="w-full bg-transparent border border-gold text-gold font-accent uppercase tracking-[0.2em] text-xs py-4 hover:bg-gold hover:text-black transition-colors">
+            {isFr ? "Connexion Admin" : "Admin Login"}
+          </button>
+        </div>
       </div>
     </div>
   );
